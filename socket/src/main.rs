@@ -9,7 +9,7 @@ fn server(args: Vec<String>) {
         let mut buf = [0; 256];
         let (number_of_bytes, src_addr) = socket.recv_from(&mut buf).expect("Didn't receive data");
 
-        println!("Recebeu!\nmsg: {}\nsize: {}\nsource:{}", str::from_utf8(&buf).unwrap(), number_of_bytes, src_addr);
+        println!("Received!\nmsg: {}\nsize: {}\nsource:{}", str::from_utf8(&buf).unwrap(), number_of_bytes, src_addr);
     }
 }
 
@@ -23,21 +23,21 @@ fn client(args: Vec<String>) {
 
     socket.send_to(&buff, format!("{}:{}", args[2], args[3])).expect("Couldn't send message");
 
-    println!("Enviou msg: '{}'", str::from_utf8(&buff).unwrap());
+    println!("Sent msg: '{}'", str::from_utf8(&buff).unwrap());
 }
 
 fn help() {
-    println!("Usos corretos:\n");
-    println!("\t./main servidor <porta>\n");
-    println!("\t./main cliente <servidor> <porta> <mensagem>:\n");
+    println!("Correct usage:\n");
+    println!("\t./main server <port>\n");
+    println!("\t./main client <server> <port> '<message>':\n");
 }
 
 fn main() {
     let args: Vec<String> = std::env::args().collect();
     
     match args[1].as_str() {
-        "cliente" => client(args),
-        "servidor" => server(args),
+        "client" => client(args),
+        "server" => server(args),
         _ => help(),
     }
 }
