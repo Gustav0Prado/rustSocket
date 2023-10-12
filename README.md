@@ -1,2 +1,2 @@
 # rustSocket
-TCP and UDP Client/Servers in Rust
+UDP Client/Server in Rust
